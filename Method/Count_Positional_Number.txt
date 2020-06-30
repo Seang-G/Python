@@ -1,0 +1,9 @@
+def Positional_Number_Count(num):
+# num의 자릿수(pos)를 반환하는 메소드
+	pos = 1
+	
+	while True:
+		if num/10 != 0:
+			pos += 1
+			num /= 10
+		else: return pos
