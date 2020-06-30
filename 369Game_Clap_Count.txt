@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+# -Python-
+# 369 게임 : 2인 이상의 인원이 가능하며 1부터 숫자를 하나 씩 대면서
+# 3, 6, 9가 들어가는 숫자는 숫자를 말하는 대신 박수를 치는 게임
+# 3, 6, 9가 여러 개 들어 가 있는 경우 그 개수만큼 박수를 친다
+
+# 자연수 N이 주어졌을 때, N 이전까지 박수를 친 횟수(count)를 구한다
+
+#-----------------------------------------------------------------------#
+
+def Position(num):
+# num의 자릿수(pos)를 반환하는 메소드
+	pos = 1
+	
+	while True:
+		if num/10 != 0:
+			pos += 1
+			num /= 10
+		else: return pos
+
+#-----------------------------------------------------------------------#
+
+def WPosition(num, pos):
+# num의 pos번째 자릿수 가 3의 배수면 1, 아니면 0을 반환하는 메소드
+	Pnum = num/10**pos % 10
+	# Pnum은 num의 pos번째 자릿수
+	if Pnum%3 == 0 and Pnum != 0: return 1
+	else: return 0
+
+#-----------------------------------------------------------------------#
+	
+N = input()
+count = 0
+
+for i in range(1, N):
+# 1부터 N 이전까지의 수(i)를 하나 씩 확인하는 방법 사용
+	for j in range(Position(i)):
+			count += WPosition(i, j)
+	
+print(count)
